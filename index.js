@@ -21,7 +21,7 @@ What properties would these classes have?
 
 what methods will these classes need?
 
-deck- shuffle(), deal() //should getDeck go in game framewrk, maybe?
+deck- shuffle(), deal() //should getDeck go in game framework, maybe?
 card- present(?)
 player- getHand(), displayScore(), presentCard(?) //not sure if we should put this here, or in card method above
 game- start(), pointsAccumulator(), declareWinner()       //i'm sure there's more here
@@ -82,19 +82,20 @@ class Deck {
           this.deck.push(ranks[rankCounter] + suits[suitCounter])
         }
       }
+      return deck;
     }
 
     shuffelDeck() {
 
         const shuffledDeck = deck => {
             for (let i = deck.length -1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
+                const j = Math.floor(Math.random() * (i + 1)); //Fisher-yates algorithm
                 const temp = deck[i];
                 deck[i] = deck[j];
-                deck[j] = temp;
+                deck[j] = temp;//is all of this correct??
             }
         }
-        return shuffledDeck; //right?
+        return shuffledDeck;
     }
 
 
@@ -103,7 +104,9 @@ class Deck {
   const deck = new Deck();
   deck.createDeck();
   console.log(deck.deck);
-  console.log(deck.shuffledDeck);
+
+  deck.shuffelDeck();
+  console.log(deck.shuffledDeck);//undefined. Is this even correct? Probably not lol
 
 
 class Card {
@@ -146,6 +149,3 @@ class Player {
 
 }//end of player class
 
-
-
-jhytgfhkuiyghjkuiy
